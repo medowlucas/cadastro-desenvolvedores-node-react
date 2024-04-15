@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/sequelize';
+import Level from './Level';
 
 interface DeveloperAttributes {
   id?: number;
@@ -109,6 +110,6 @@ Developer.init(
     timestamps: true,
   }
 );
-
+Developer.belongsTo(Level, { foreignKey: 'nivelId' });
 export default Developer;
 export { DeveloperAttributes };

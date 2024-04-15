@@ -69,5 +69,18 @@ Este capítulo detalha os passos para configurar o ambiente de frontend do proje
    npx create-react-app frontend
    cd frontend
    npm install axios
-   npm install react-router-dom
+   npm install bootstrap
+   npm install react-bootstrap-icons
   ```
+
+Nesse momento, foram removidos os arquivos padrões do react para deixar o projeto limpo. Aproveitando já será criado o service de api que conecta o frontend com o backend.
+![Conexão API](passos/conexao-api.png)
+
+Tive um problema ao listar a tabela de desenvolvedores pois estava trazendo apenas o Id do nível. Para resolver, foi necessário um include no controller dos desenvolvedores:
+
+![Alteração Backend - Include para Níveis](passos/alteracao-backend-include.png)
+
+![Primeira Tabela desenvolvedores](passos/tabela-react.png)
+
+![Resposta Get desenvolvedores](passos/resposta-insomnia-include.png)
+

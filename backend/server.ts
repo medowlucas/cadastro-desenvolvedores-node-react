@@ -8,6 +8,9 @@ import { popularTabelaDevelopers } from './config/developer-migration';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
+const cors = require('cors');
+
+app.use(cors({ origin: 'http://localhost:8080' }));
 
 // Middleware para analisar corpos de requisição JSON
 app.use(bodyParser.json());

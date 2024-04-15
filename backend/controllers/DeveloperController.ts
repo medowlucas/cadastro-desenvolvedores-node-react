@@ -1,11 +1,14 @@
 import { Request, Response } from 'express';
 import Developer from '../models/Developer';
 import { calculateAge, isValidDate } from '../utils';
+import { Level } from '../models';
 
 class DeveloperController {
   public async getAllDevelopers(req: Request, res: Response): Promise<void> {
     try {
-      const developers = await Developer.findAll();
+      const developers = await Developer.findAll({
+        include: Level,
+      });
 
       if (!developers.length) {
         res.status(404).json({ message: 'Não foram encontrados desenvolvedores cadastrados' });
@@ -22,7 +25,9 @@ class DeveloperController {
   public async getDeveloperById(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const developer = await Developer.findByPk(id);
+      const developer = await Developer.findByPk(id, {
+        include: Level,
+      });
 
       if (!developer) {
         res.status(404).json({ message: 'Desenvolvedor não encontrado' });
