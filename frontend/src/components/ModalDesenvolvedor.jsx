@@ -9,6 +9,11 @@ const ModalDesenvolvedor = ({ id, show, onHide, onSave }) => {
   const [hobby, setHobby] = useState('');
   const [nivelId, setNivelId] = useState('');
 
+  const converterData = (dataString) => {
+    const dataNascimentoConvertida = new Date(dataString).toISOString().split('T')[0];
+    return dataNascimentoConvertida;
+  };
+
   useEffect(() => {
     if (show && id) {
         api.get(`/desenvolvedores/${id}`)
@@ -24,18 +29,21 @@ const ModalDesenvolvedor = ({ id, show, onHide, onSave }) => {
     }}, [id, show]);
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const dataNascimentoConvertida = new Date(datanascimento).toISOString().split('T')[0];
-    // Lógica para salvar os dados
-    onSave({
-      nome,
-      sexo,
-      datanascimento: dataNascimentoConvertida,
-      hobby,
-      nivelId
-    });
-    // Fechar o modal após salvar
-    onHide();
+      event.preventDefault();
+      const dataNascimentoConvertida = datanascimento ? converterData(datanascimento) : '';
+      console.log(dataNascimentoConvertida, datanascimento);
+      if (dataNascimentoConvertida) {
+          onSave({
+              nome,
+              sexo,
+              datanascimento: dataNascimentoConvertida,
+              hobby,
+              nivelId
+          });
+          onHide();
+      } else {
+          console.error('Data de nascimento inválida.');
+      }
   };
 
   return (

@@ -84,3 +84,11 @@ Tive um problema ao listar a tabela de desenvolvedores pois estava trazendo apen
 
 ![Resposta Get desenvolvedores](passos/resposta-insomnia-include.png)
 
+## Resultado Frontend:
+Faltaram alguns conteúdos mais densos de tratamentos de models no front, segurança de cors, otimização de variáveis de ambiente através do docker e .env, tratamento de erros no frontend, input com optinal e feedbacks com toast.
+
+Segue o gif do resultado:
+
+![Resultado Final](passos/resultado-final.gif)
+
+![Resultado Final2](passos/resultado-final2.gif)
