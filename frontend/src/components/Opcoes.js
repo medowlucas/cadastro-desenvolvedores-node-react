@@ -3,7 +3,7 @@ import { PencilSquare, Trash } from 'react-bootstrap-icons';
 import { Modal, Button, ModalBody } from 'react-bootstrap';
 import api from '../services/api';
 
-function Opcoes({ itemId, rota }) {
+function Opcoes({ itemId, rota, atualizar }) {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
@@ -22,6 +22,7 @@ function Opcoes({ itemId, rota }) {
     api.delete(`/${rota}/${selectedItemId}`)
       .then(response => {
         setShowDeleteModal(false);
+        atualizar();
         console.log('Item excluído com sucesso:', response.data);
       })
       .catch(error => {

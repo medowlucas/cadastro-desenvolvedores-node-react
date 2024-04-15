@@ -6,10 +6,14 @@ import Opcoes from '../components/Opcoes';
 function Nivel() {
   const [niveis, setNiveis] = useState([]);
 
-  useEffect(() => {
+  const atualizarNiveis = () => {
     api.get('niveis')
       .then(response => setNiveis(response.data))
       .catch(error => console.error(error));
+  };
+
+  useEffect(() => {
+    atualizarNiveis();
   }, []);
 
   return (
@@ -27,7 +31,7 @@ function Nivel() {
             <td>{nivel.id}</td>
             <td>{nivel.nivel}</td>
             <td>
-              <Opcoes itemId={nivel.id} rota={'niveis'} />
+              <Opcoes itemId={nivel.id} rota={'niveis'} atualizar={atualizarNiveis} />
             </td>
           </tr>
         ))}
