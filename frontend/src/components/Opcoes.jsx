@@ -3,6 +3,7 @@ import { PencilSquare, Trash } from 'react-bootstrap-icons';
 import { Modal, Button, ModalBody } from 'react-bootstrap';
 import api from '../services/api';
 import ModalDesenvolvedor from './ModalDesenvolvedor';
+import ModalNiveis from './ModalNiveis';
 
 function Opcoes({ itemId, rota, atualizar }) {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -12,7 +13,6 @@ function Opcoes({ itemId, rota, atualizar }) {
   const handleEdit = (id) => {
     setSelectedItemId(id);
     setShowEditModal(true);
-    console.log('showEditModal:', showEditModal);
   };
 
   const handleDelete = (id) => {
@@ -32,6 +32,18 @@ function Opcoes({ itemId, rota, atualizar }) {
       });
   };
 
+  const handlePutSave = (body) => {
+    api.put(`/${rota}/${selectedItemId}`, body)
+      .then(response => {
+        setShowDeleteModal(false);
+        atualizar();
+        console.log('Item alterado com sucesso:', response.data);
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+  };
+
   return (
     <>
       <PencilSquare
@@ -45,10 +57,16 @@ function Opcoes({ itemId, rota, atualizar }) {
         onClick={() => handleDelete(itemId)}
       />
 
-      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
-        <ModalDesenvolvedor id={itemId}  show={showEditModal} onHide={() => setShowEditModal(false)} />
-      </Modal>
-    
+      {`${rota}` === 'desenvolvedores' ? (
+        <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+          <ModalDesenvolvedor id={itemId} show={showEditModal} onHide={() => setShowEditModal(false)} onSave={handlePutSave} />
+        </Modal>
+      ) : (
+        <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+          <ModalNiveis id={itemId} show={showEditModal} onHide={() => setShowEditModal(false)} onSave={handlePutSave} />
+        </Modal>
+      )}
+
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar Exclusão</Modal.Title>
