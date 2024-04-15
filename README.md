@@ -16,7 +16,7 @@ Este capítulo detalha os passos para configurar o ambiente de backend do projet
    cd backend
    npm init
    npm install express --save
-   npm install sequelize pg pg-hstore
+   npm install sequelize sequelize-typescript pg @types/sequelize
    npm install express-validator
    npm install jest --save-dev
    npm install swagger-ui-express
@@ -25,14 +25,26 @@ Este capítulo detalha os passos para configurar o ambiente de backend do projet
 
 O TypeScript é um superconjunto de JavaScript que adiciona tipagem estática e outros recursos úteis que podem melhorar a qualidade do código e a experiência de desenvolvimento. Abaixo estão os passos para adicionar o TypeScript ao seu projeto backend Node.js.
 
-**TypeScript como uma dependência de desenvolvimento:**
+**TypeScript e Jest como uma dependência de desenvolvimento:**
    ```bash
    npm install --save-dev typescript
    npx tsc --init
    npm install --save-dev @types/express
    npm install --save-dev ts-node-dev
+   npm install --save-dev jest ts-jest @types/jest
+   npm install --save-dev jest supertest
+   npm install cross-env --save-dev
    ```
 Com isso, o nosso backend inicial está pronto para começar o desenvolvimento
 
 ![Estrutura Backend](passos/configurando-arquivos-back.png)
 ![Serviço](passos/subindo-servidor.png)
+
+Dando seguimento, nessa etapa foi criado os models para desenvolvedores e níveis, bem como as rotas para os mesmos:
+
+![Estrutura Backend 2](passos/criando-pastas-models-sequelize.png)
+
+Também foi necessário configurar corretamente o Dockerfile e docker-compose.yml para validar o funcionamento:
+
+![Docker no Backend](passos/dockercompose.png)
+
