@@ -3,24 +3,24 @@ import sequelize from '../config/sequelize';
 
 interface DeveloperAttributes {
   id?: number;
-  name: string;
-  sex: string;
-  birthdate: Date;
-  age: number;
+  nome: string;
+  sexo: string;
+  datanascimento: Date;
+  idade: number;
   hobby?: string;
-  levelId: number;
+  nivelId: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 class Developer extends Model<DeveloperAttributes> {
   public id!: number;
-  public name!: string;
-  public sex!: string;
-  public birthdate!: Date;
-  public age!: number;
+  public nome!: string;
+  public sexo!: string;
+  public datanascimento!: Date;
+  public idade!: number;
   public hobby?: string;
-  public levelId!: number;
+  public nivelId!: number;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
@@ -37,27 +37,47 @@ Developer.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    nome: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'O campo "nome" não pode ser vazio'
+        }
+      }
     },
-    sex: {
+    sexo: {
       type: DataTypes.CHAR(1),
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'O campo "sexo" não pode ser vazio'
+        }
+      }
     },
-    birthdate: {
+    datanascimento: {
       type: DataTypes.DATE,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'O campo "datanascimento" não pode ser vazio'
+        }
+      }
     },
-    age: {
+    idade: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
     hobby: {
       type: DataTypes.STRING,
       allowNull: true,
+      validate: {
+        notEmpty: {
+          msg: 'O campo "hobby" não pode ser vazio'
+        }
+      }
     },
-    levelId: {
+    nivelId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -65,6 +85,11 @@ Developer.init(
         key: 'id',
       },
       onUpdate: 'CASCADE',
+      validate: {
+        notEmpty: {
+          msg: 'O campo "nivelId" não pode ser vazio'
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,

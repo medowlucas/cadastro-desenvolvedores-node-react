@@ -4,15 +4,15 @@ async function popularTabelaDevelopers(): Promise<void> {
   try {
     // Populando a tabela com dados iniciais
     await Developer.bulkCreate([
-      { name: 'Alice', sex: 'F', birthdate: new Date('1990-01-01'), age: 30, hobby: 'Escalada', levelId: 1, createdAt: new Date(), updatedAt: new Date()},
-      { name: 'Clotilde', sex: 'F', birthdate: new Date('1985-05-15'), age: 25, hobby: 'Xadrez', levelId: 2, createdAt: new Date(), updatedAt: new Date() },
-      { name: 'Jhon', sex: 'M', birthdate: new Date('1985-05-15'), age: 45, hobby: 'Pescaria', levelId: 3, createdAt: new Date(), updatedAt: new Date() },
-      { name: 'José', sex: 'M', birthdate: new Date('1985-05-15'), age: 32, hobby: 'Leitura', levelId: 4, createdAt: new Date(), updatedAt: new Date() },
+      { nome: 'Alice', sexo: 'F', datanascimento: new Date('1990-01-01'), idade: 34, hobby: 'Escalada', nivelId: 1, createdAt: new Date(), updatedAt: new Date()},
+      { nome: 'Clotilde', sexo: 'F', datanascimento: new Date('1990-01-01'), idade: 34, hobby: 'Xadrez', nivelId: 2, createdAt: new Date(), updatedAt: new Date() },
+      { nome: 'Jhon', sexo: 'M', datanascimento: new Date('1990-01-01'), idade: 34, hobby: 'Pescaria', nivelId: 3, createdAt: new Date(), updatedAt: new Date() },
+      { nome: 'José', sexo: 'M', datanascimento: new Date('1990-01-01'), idade: 34, hobby: 'Leitura', nivelId: 4, createdAt: new Date(), updatedAt: new Date() },
     ] as DeveloperAttributes[]);
 
     console.log('Dados populados com sucesso.');
   } catch (error) {
-    console.error('Erro ao popular tabela de levels:', error);
+    console.error('Erro ao popular tabela de desenvolvedores:', error);
   }
 }
 

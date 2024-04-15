@@ -1,9 +1,13 @@
 import { Router } from 'express';
-import DeveloperController from '../controllers/DeveloperController'; // Importe o controller corretamente
+import DeveloperController from '../controllers/DeveloperController';
 
 const router = Router();
 
-router.get('/', DeveloperController.getAllDevelopers); // Remova os parênteses para passar apenas a referência da função
-// Adicione outras rotas (POST, PUT, DELETE) para desenvolvedores
+router.get('/desenvolvedores/', DeveloperController.getAllDevelopers);
+router.get('/desenvolvedores/:id', DeveloperController.getDeveloperById);
+router.post('/desenvolvedores/', DeveloperController.createDeveloper);
+router.put('/desenvolvedores/:id', DeveloperController.updateDeveloper);
+router.patch('/desenvolvedores/:id', DeveloperController.patchDeveloper);
+router.delete('/desenvolvedores/:id', DeveloperController.deleteDeveloper);
 
 export default router;

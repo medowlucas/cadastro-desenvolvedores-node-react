@@ -48,3 +48,26 @@ Também foi necessário configurar corretamente o Dockerfile e docker-compose.ym
 
 ![Docker no Backend](passos/dockercompose.png)
 
+## Configuração dos controllers:
+
+Nessa parte tive complicações com a migration do sequelize e decidi popular a tabela no docker, usando uma função em tempo de execução para poder testar o conteúdo do banco e também as respostas dos verbos http.
+
+![Migration](passos/migration.png)
+
+Para resolver problemas com a validação de data de nascimento e calcular a idade, foi criado um arquivo utils.ts na raiz do backend e importado no controller de desenvolvedores:
+
+![Validate](passos/validate.png)
+
+![Resposta da validação no verbo post desenvolvedores](passos/postError.png)
+
+# 3 - Configuração do Frontend
+
+Este capítulo detalha os passos para configurar o ambiente de frontend do projeto utilizando a biblioteca reactJS.
+
+## Inicialização do Projeto React
+   ```bash
+   npx create-react-app frontend
+   cd frontend
+   npm install axios
+   npm install react-router-dom
+  ```
