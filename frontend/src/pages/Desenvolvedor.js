@@ -15,10 +15,14 @@ function formatDate(isoDate) {
 function Desenvolvedor() {
   const [desenvolvedores, setDesenvolvedores] = useState([]);
 
-  useEffect(() => {
-    api.get('/desenvolvedores')
+  const atualizarDesenvolvedores = () => {
+    api.get('desenvolvedores')
       .then(response => setDesenvolvedores(response.data))
       .catch(error => console.error(error));
+  };
+
+  useEffect(() => {
+    atualizarDesenvolvedores();
   }, []);
 
   return (
@@ -44,7 +48,7 @@ function Desenvolvedor() {
             <td>{dev.hobby}</td>
             <td>{dev.Level.nivel}</td>
             <td>
-              <Opcoes itemId={dev.id} rota={'desenvolvedores'} />
+              <Opcoes itemId={dev.id} rota={'desenvolvedores'} atualizar={atualizarDesenvolvedores} />
             </td>
           </tr>
         ))}

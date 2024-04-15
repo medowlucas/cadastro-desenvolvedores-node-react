@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
 import { Modal, Button, ModalBody } from 'react-bootstrap';
 import api from '../services/api';
+import ModalDesenvolvedor from './ModalDesenvolvedor';
 
 function Opcoes({ itemId, rota, atualizar }) {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -11,6 +12,7 @@ function Opcoes({ itemId, rota, atualizar }) {
   const handleEdit = (id) => {
     setSelectedItemId(id);
     setShowEditModal(true);
+    console.log('showEditModal:', showEditModal);
   };
 
   const handleDelete = (id) => {
@@ -33,32 +35,27 @@ function Opcoes({ itemId, rota, atualizar }) {
   return (
     <>
       <PencilSquare
-        className='me-3'
+        className='botao-editar me-3'
         title='Editar'
-        style={{ color: '#007bff' }}
         onClick={() => handleEdit(itemId)}
       />
       <Trash
+        className='botao-excluir'
         title='Excluir'
-        style={{ color: '#dc3545' }}
         onClick={() => handleDelete(itemId)}
       />
 
-      {/* Modal de edição */}
       <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
-        <ModalBody>
-            <input />    
-        </ModalBody>
+        <ModalDesenvolvedor id={itemId}  show={showEditModal} onHide={() => setShowEditModal(false)} />
       </Modal>
-
-      {/* Modal de confirmação de exclusão */}
+    
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar Exclusão</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <ModalBody>
           Tem certeza de que deseja excluir este item?
-        </Modal.Body>
+        </ModalBody>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
             Cancelar
